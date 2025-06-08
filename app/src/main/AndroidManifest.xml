@@ -144,6 +144,17 @@
                 android:resource="@xml/entity_widget_info" />
         </receiver>
 
+        <receiver android:name=".widgets.todo.TodoWidget" android:label="@string/widget_todo_label"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/todo_widget_info" />
+        </receiver>
+
         <receiver android:name=".widgets.mediaplayer.MediaPlayerControlsWidget" android:label="@string/widget_media_player_description"
             android:exported="false">
             <intent-filter>
@@ -201,6 +212,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".widgets.entity.EntityWidgetConfigureActivity"
+            android:configChanges="orientation|screenSize"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".widgets.todo.TodoWidgetConfigureActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true">
             <intent-filter>
@@ -444,6 +462,15 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths"/>
         </provider>
+
+        <activity
+            android:name=".qs.TilePreferenceActivity"
+            android:exported="true"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE_PREFERENCES" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".qs.Tile1Service"
